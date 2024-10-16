@@ -8,7 +8,7 @@ error NotOwner();
 contract FundMe {
     using PriceConvertor for uint256;
 
-    uint256 public constant MINIMUM_USD = 50 * 1e18
+    uint256 public constant MINIMUM_USD = 50 * 1e18;
 
     address[] public funders;
     mapping (address => uint256) public addressToAmountFunded;
@@ -19,7 +19,7 @@ contract FundMe {
         i_owner = msg.sender;
     }
 
-    function fundMe() public payable {
+    function fund() public payable {
 
         require(msg.value.getConversionRate() >= MINIMUM_USD, "Didn't send enough");
 
@@ -42,7 +42,7 @@ contract FundMe {
     }
 
     modifier onlyOwner {
-        if(msg.sender != i_owner) revert NotOwner()
+        if(msg.sender != i_owner) revert NotOwner();
         _;
     }
 

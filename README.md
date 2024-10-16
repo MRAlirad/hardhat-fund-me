@@ -53,3 +53,11 @@ solhint contracts/**/*.sol
 #To lint a single file:
 solhint contracts/MyToken.sol
 ```
+
+## Importing from NPM
+
+you need to install [`chainlink contract`](https://www.npmjs.com/package/@chainlink/contracts) package in order to compile solidity files that are using chainlink contract.
+
+```bash
+npm install --save-dev @chainlink/contracts
+```
