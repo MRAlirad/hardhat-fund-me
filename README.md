@@ -99,3 +99,21 @@ npx hardhat deploy
 ```
 
 it automatically calls the default module function and passes the hardhat object into it ((01-depoy-fund-me.js) default export).
+
+## Mocking
+
+how to deploy the fund me contract.
+
+Mocking is primarily used in unit testing. An object under test may have dependencies on other (complex) objects. To isolate the behaviour of the object you want to test you replace the other objects by mocks that simulate the behaviour of the real objects. This is useful if the real objects are impractical to incorporate into the unit test.
+
+In short, mocking is creating objects that simulate the behaviour of real objects.
+
+> You can handle multiple solidity versions in your `hardhat.config.js`
+
+```js
+module.exports = {
+	solidity: {
+		compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
+	},
+};
+```

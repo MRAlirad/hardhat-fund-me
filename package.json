@@ -10,11 +10,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@chainlink/contracts": "^1.2.0",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "ethers": "^6.13.4",
     "hardhat": "^2.22.13",
     "hardhat-deploy": "^0.13.0"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^1.2.0"
   }
 }
