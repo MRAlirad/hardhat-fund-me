@@ -61,3 +61,41 @@ you need to install [`chainlink contract`](https://www.npmjs.com/package/@chainl
 ```bash
 npm install --save-dev @chainlink/contracts
 ```
+
+## Hardhat Deploy
+
+we learned in the past that if we want to deploy our contract we need to use a script for that and make our own manual deploy script.
+
+however, we realized the more we work with just raw ethers or hardhat, keeping track of our deployments can be tricky. if your just use deploy.js script , it not saving our deployments in any file. Additionally having everything in the deploy script for deploying can make the tests and the deploy scripts, maybe not work exactly hand in hand. And there are a couple of other thigs that might be a little bit tricky to work on, there is a package that can make our life easier which is called [`hardhat-deploy`](https://github.com/wighawag/hardhat-deploy).
+
+A Hardhat Plugin For Replicable Deployments And Easy Testing
+
+This hardhat plugin adds a mechanism to deploy contracts to any network, keeping track of them and replicating the same environment for testing.
+
+to install it:
+
+```bash
+npm install -D hardhat-deploy
+```
+
+And add the following statement to your `hardhat.config.js`:
+
+```js
+require('hardhat-deploy');
+```
+
+and now the `deploy` task is added to hardhat available tasks.
+
+It is also recommended to install hardhat-deploy-ethers which add extra features to access deployments as ethers contract.
+
+```bash
+npm install --save-dev @nomicfoundation/hardhat-ethers ethers
+```
+
+in deploy.js file, every time you run the "deploy" script using the command:
+
+```bash
+npx hardhat deploy
+```
+
+it automatically calls the default module function and passes the hardhat object into it ((01-depoy-fund-me.js) default export).
