@@ -102,11 +102,15 @@ it automatically calls the default module function and passes the hardhat object
 
 ## Mocking
 
-how to deploy the fund me contract.
+hardhat network is a blank blockchain, the `priceFeed` contract won't exist (it is on sepolia). so how to intract with our code locally. we can fork the blockchain.
 
 Mocking is primarily used in unit testing. An object under test may have dependencies on other (complex) objects. To isolate the behaviour of the object you want to test you replace the other objects by mocks that simulate the behaviour of the real objects. This is useful if the real objects are impractical to incorporate into the unit test.
 
 In short, mocking is creating objects that simulate the behaviour of real objects.
+
+we want to make a fake price feed contract that we can use and we can control when locally.
+
+we need to parameterize price feed address so no matter what chain we deploy to, we don't have to change any of our codes.
 
 > You can handle multiple solidity versions in your `hardhat.config.js`
 
@@ -117,3 +121,8 @@ module.exports = {
 	},
 };
 ```
+
+## Utils Folder
+
+we can have a folder called `utils` and we can add diffrent scripts that we can use accross different deployments. and use that script where ever wen want to avoid repeating writing multiple scripts.
+

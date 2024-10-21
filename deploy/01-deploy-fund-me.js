@@ -3,6 +3,7 @@ const {
 	developmentChains,
 } = require("../helper-hardhat-config");
 const { network } = require("hardhat");
+const { verify } = require("../utils/verify");
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
 	// we have access to hre (hardhat runtime environment) when "npx hardhat deploy" script runs
@@ -24,13 +25,23 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 	// well what happens when we want to change chains
 	// when going for localhost or hardhat network we want to use a mock
 
+	const args = [ethUsdPriceFeedAddress]; // put price feed address,
+
 	// name of the contract
 	const fundMe = await deploy("FundMe", {
 		// the list of the override we want to add
 		from: deployer,
-		args: [ethUsdPriceFeedAddress], // put price feed address,
+		args: args,
 		log: true,
 	});
+
+	if (
+		!developmentChains.includes(network.name) &&
+		process.env.ETHERSCAN_API_KEY
+	) {
+		await verify(fundMe.address, args);
+	}
+
 	log("------------------------------");
 };
 
