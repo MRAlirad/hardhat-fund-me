@@ -126,3 +126,8 @@ module.exports = {
 
 we can have a folder called `utils` and we can add diffrent scripts that we can use accross different deployments. and use that script where ever wen want to avoid repeating writing multiple scripts.
 
+## Testnet Demo Sepolia
+
+```bash
+npx hardhat deploy --network sepolia
+```

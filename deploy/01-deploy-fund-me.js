@@ -33,13 +33,14 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 		from: deployer,
 		args: args,
 		log: true,
+		waitConfirmations: network.config.blockConfirmations || 1,
 	});
 
 	if (
 		!developmentChains.includes(network.name) &&
 		process.env.ETHERSCAN_API_KEY
 	) {
-		await verify(fundMe.address, args);
+		await verify(fundMe.target, args);
 	}
 
 	log("------------------------------");
