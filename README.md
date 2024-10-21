@@ -131,3 +131,40 @@ we can have a folder called `utils` and we can add diffrent scripts that we can 
 ```bash
 npx hardhat deploy --network sepolia
 ```
+
+## Solidity Style guide
+
+you can visit [`style guide`](https://docs.soliditylang.org/en/v0.8.28/style-guide.html) to provide coding conventions for writing Solidity code. This guide should be thought of as an evolving document that will change over time as useful conventions are found and old conventions are rendered obsolete.
+
+### Order of Layout
+
+1. Pragma statements
+2. Import statements
+3. Events
+4. Errors
+5. Interfaces
+6. Libraries
+7. Contracts
+
+### Inside each contract, library or interface
+
+1. Type declarations
+2. State variables
+3. Events
+4. Errors
+5. Modifiers
+6. Functions
+
+## Order of Functions
+
+1. constructor
+2. receive function (if exists)
+3. fallback function (if exists)
+4. external
+5. public
+6. internal
+7. private
+
+### NatSpec
+
+Solidity contracts can also contain [`NatSpec comments`](https://docs.soliditylang.org/en/latest/natspec-format.html). They are written with a triple slash (///) or a double asterisk block (/** ... */) and they should be used directly above function declarations or statements.
