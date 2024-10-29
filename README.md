@@ -204,7 +204,11 @@ await development.fixture(['all'])
 
 ## Storage in Solidity
 
+Any vairable that is changeable that we want to persist across contract executions and transactions. we save to a fiant array called `storage`. this array is sequentially indexed starting at zero, so the first variable, the first value we have in our contract gets stored to the zero with index. the next one get stored to one and so on and so forth. dynamic array and mappings and other dynamically sized objects use specific hashing function to determine where the elements of those dynamic Data Structures go
+
 - [`Layout of State Variables`](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html) of contracts are stored in storage in a compact way such that multiple values sometimes use the same storage slot. Except for dynamically-sized arrays and mappings, data is stored contiguously item after item starting with the first state variable, which is stored in slot 0. For each variable, a size in bytes is determined according to its type. Multiple, contiguous items that need less than 32 bytes are packed into a single storage slot if possible.
+
+`momory` vairables, `constant` variables and `immutable` variables don't go in storage
 
 - [`opCodes`](https://ethereum.org/en/developers/docs/evm/opcodes/) => are represent what the machine code is doing. And they represent how much computational work it takes to actually run our code and do stuff with our code. the way that how gas is actually calculated is by these opcodes.
 
@@ -218,3 +222,15 @@ await development.fixture(['all'])
 - anytime you read or write to  and from storage you spend a ton of gas.
 
 - [`Purpose of the memory keyword`](https://stackoverflow.com/questions/33839154/in-ethereum-solidity-what-is-the-purpose-of-the-memory-keyword)
+
+## Solidity Chainlink Style Guide
+
+we can private our state variable and have a `get public view` function that returns it, to save some gas.
+
+```js
+address private immutable i_owner;
+
+function getOwner() public view returns (address) {
+	return i_owner;
+}
+```

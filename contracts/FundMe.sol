@@ -13,17 +13,17 @@ error FundMe__NotOwner();
     * @dev This implements price feeds as our library
 */
 contract FundMe {
+    // Type Declarations
     using PriceConvertor for uint256;
 
-    uint256 public constant MINIMUM_USD = 50 * 1e18;
+    // State variables
+    uint256 public constant MINIMUM_USD = 50 * 10**18;
+    address private immutable i_owner;
+    address[] private s_funders;
+    mapping(address => uint256) private s_addressToAmountFunded;
+    AggregatorV3Interface private s_priceFeed;
 
-    address[] public s_funders;
-    mapping (address => uint256) public s_addressToAmountFunded;
-
-    address public i_owner;
-
-    AggregatorV3Interface public s_priceFeed;
-
+    // Modifiers
     modifier onlyOwner {
         if(msg.sender != i_owner) revert FundMe__NotOwner();
         _;
@@ -42,6 +42,7 @@ contract FundMe {
         fund();
     }
 
+    /// @notice Funds our contract based on the ETH/USD price
     function fund() public payable {
         require(msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD, "Didn't send enough");
 
@@ -78,5 +79,29 @@ contract FundMe {
         // payable(msg.sender).transfer(address(this).balance);
         (bool success, ) = i_owner.call{value: address(this).balance}("");
         require(success);
+    }
+
+    function getAddressToAmountFunded(address fundingAddress)
+        public
+        view
+        returns (uint256)
+    {
+        return s_addressToAmountFunded[fundingAddress];
+    }
+
+    function getVersion() public view returns (uint256) {
+        return s_priceFeed.version();
+    }
+
+    function getFunder(uint256 index) public view returns (address) {
+        return s_funders[index];
+    }
+
+    function getOwner() public view returns (address) {
+        return i_owner;
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) {
+        return s_priceFeed;
     }
 }
