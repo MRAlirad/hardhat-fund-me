@@ -201,3 +201,20 @@ await development.fixture(['all'])
 - [`TransactionReceipt`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionReceipt)
 
 - [`hardhat console.log`](https://hardhat.org/hardhat-network/docs/reference#console.log)
+
+## Storage in Solidity
+
+- [`Layout of State Variables`](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html) of contracts are stored in storage in a compact way such that multiple values sometimes use the same storage slot. Except for dynamically-sized arrays and mappings, data is stored contiguously item after item starting with the first state variable, which is stored in slot 0. For each variable, a size in bytes is determined according to its type. Multiple, contiguous items that need less than 32 bytes are packed into a single storage slot if possible.
+
+- [`opCodes`](https://ethereum.org/en/developers/docs/evm/opcodes/) => are represent what the machine code is doing. And they represent how much computational work it takes to actually run our code and do stuff with our code. the way that how gas is actually calculated is by these opcodes.
+
+- [`Opcodes by Gas`](https://github.com/crytic/evm-opcodes)
+- [`Opcodes by Gas`](https://evm.codes/)
+
+- Append `s_` to storage variables.
+- Append `i_` to immutable variables.
+- Caps lock and underscore constant variables
+
+- anytime you read or write to  and from storage you spend a ton of gas.
+
+- [`Purpose of the memory keyword`](https://stackoverflow.com/questions/33839154/in-ethereum-solidity-what-is-the-purpose-of-the-memory-keyword)

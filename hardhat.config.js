@@ -35,7 +35,7 @@ module.exports = {
 		outputFile: "gas-reporter.txt", //! to output the gas reporter in to a .txt file
 		noColors: true,
 		currency: "USD",
-		coinmarketcap: COINMARKEYCAP_API_KEY, //! the API given from https://coinmarketcap.com
+		// coinmarketcap: COINMARKEYCAP_API_KEY, //! the API given from https://coinmarketcap.com
 		token: "MATIC", //! to deploy in diffrent network
 	},
 	namedAccounts: {
