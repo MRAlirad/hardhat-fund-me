@@ -168,3 +168,36 @@ you can visit [`style guide`](https://docs.soliditylang.org/en/v0.8.28/style-gui
 ### NatSpec
 
 Solidity contracts can also contain [`NatSpec comments`](https://docs.soliditylang.org/en/latest/natspec-format.html). They are written with a triple slash (///) or a double asterisk block (/** ... */) and they should be used directly above function declarations or statements.
+
+## Testing Fund Me
+
+there are two kinds of testing:
+
+1. Unit Tesing
+	- Unit testing, a.k.a. component or module testing, is a form of software testing by which isolated source code is tested to validate expected behavior.
+	- Unit testing describes tests that are run at the unit-level to contrast testing at the integration or system level.
+	- can be done in `local hardhat` or `forked hardhat`
+
+2. Staging Test => tests that can be done on a testnet, before deploy to mainnet
+
+### Unit Testing
+
+[`development.fixture()`](https://github.com/wighawag/hardhat-deploy#creating-fixtures) allow us to basiclly run our entire deploy folder with as many tags as want.
+
+```js
+const { deployments } = require("hardhat");
+
+await development.fixture(['all'])
+```
+
+- [`Chai matchers`](https://ethereum-waffle.readthedocs.io/en/latest/matchers.html) => A set of sweet chai matchers, makes your test easy to write and read. Before you can start using the matchers, you have to tell chai to use the solidity plugin:
+
+- [`ethers.utils.parseUnits`](https://docs.ethers.org/v5/api/utils/display-logic/#utils-parseUnits)
+
+- [`Breakpoints & Debugging`](https://code.visualstudio.com/Docs/editor/debugging)
+
+- [`TransactionResponse`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionResponse)
+
+- [`TransactionReceipt`](https://docs.ethers.org/v5/api/providers/types/#providers-TransactionReceipt)
+
+- [`hardhat console.log`](https://hardhat.org/hardhat-network/docs/reference#console.log)
